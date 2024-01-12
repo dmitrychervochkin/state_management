@@ -10,16 +10,28 @@ export function appReducer(state = initialState, action){
 
 	switch(type){
 		case 'SET_CURRENT_PLAYER': {
-			return payload;
+			return {
+				...state,
+				currentPlayer: payload
+			};
 		}
 		case 'SET_IS_GAME_ENDED': {
-			return payload;
+			return {
+				...state,
+				isGameEnded: payload
+			};
 		}
 		case 'SET_IS_DRAW': {
-			return payload;
+			return {
+				...state,
+				isDraw: payload
+			};
 		}
 		case 'SET_FIELDS': {
-			return payload;
+			return {
+				...state,
+				fields: payload
+			};
 		}
 		default:
 			return state;

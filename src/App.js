@@ -7,7 +7,7 @@ import { store } from './store';
 
 export function App() {
 	const [ state, setState ] = useState(store.getState());
-	const { fields, isDraw, isGameEnded, currentPlayer } = store.getState();
+	const { fields, isGameEnded, currentPlayer } = store.getState();
 
 	function whoIsWinner(field){
 		const WIN_PATTERNS = [
@@ -29,13 +29,16 @@ export function App() {
 		function handleChange(){
 			setState(store.getState());
 		}
+
 		const unsubscribe = store.subscribe(handleChange);
 
 		return () => unsubscribe();
 	}, []);
 
+	console.log(state)
 
 	function handleClick(index) {
+
 		const fieldsCopy = [...fields];
 
 		if(!isGameEnded && fieldsCopy[index] === ''){
@@ -55,14 +58,14 @@ export function App() {
 			store.dispatch({ type: 'SET_CURRENT_PLAYER', payload: currentPlayer === 'X' ? 'O' : 'X' });
 			// setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
 		}
-	}
+	};
 
 	function handleRestart(){
 		store.dispatch({ type: 'SET_CURRENT_PLAYER', payload: 'X' });
 		store.dispatch({ type: 'SET_IS_GAME_ENDED', payload: false });
 		store.dispatch({ type: 'SET_IS_DRAW', payload: false });
 		store.dispatch({ type: 'SET_FIELDS', payload: ['', '', '', '', '', '', '', '', ''] });
-	}
+	};
 
 	return (
 		<div className={styles.App}>
@@ -77,5 +80,5 @@ export function App() {
 			</button>
 		</div>
 	);
-}
+};
 

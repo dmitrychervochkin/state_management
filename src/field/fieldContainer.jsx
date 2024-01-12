@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './field.module.css';
 import PropTypes from 'prop-types';
-import { store } from '../store';
+// import { store } from '../store';
 
 export function FieldContainer({field, index, handleClick}) {
 	return(
